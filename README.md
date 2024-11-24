@@ -2,6 +2,8 @@
 
 This is a [Next.js](https://nextjs.org) project that generates smooth pickup lines and flirty messages.
 
+![Rizz Lines Generator](./public/rizz-lines-generator.png)
+
 ## Getting Started
 
 First, run the development server:
