@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Rizz Lines Generator
+
+This is a [Next.js](https://nextjs.org) project that generates smooth pickup lines and flirty messages.
 
 ## Getting Started
 
@@ -18,19 +20,30 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Features
 
-## Learn More
+- Generate unique rizz lines and pickup lines with one click
+- Multiple rizz line styles (casual, romantic, funny, and smooth)
+- AI-powered rizz generator for personalized results
+- Save your favorite rizz lines to your collection
+- Share your best rizz lines on social media
+- Mobile-friendly rizz lines generator
+- Copy rizz lines directly to clipboard
+- New rizz lines updated daily
 
-To learn more about Next.js, take a look at the following resources:
+## FAQ
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### What is a Rizz Lines Generator?
+A Rizz Lines Generator is an AI-powered tool that creates smooth pickup lines and flirty messages. Our rizz generator helps you create unique and engaging conversation starters.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### How does the Rizz Lines Generator work?
+The Rizz Lines Generator uses advanced AI to create unique pickup lines based on different styles and contexts. Simply click the generate button to get new rizz lines instantly.
 
-## Deploy on Vercel
+### Are these rizz lines original?
+Yes, our Rizz Lines Generator creates unique and original pickup lines every time. Each generated rizz line is crafted to be fresh and engaging.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Can I use the Rizz Lines Generator for free?
+Yes, the basic Rizz Lines Generator features are completely free to use. Premium features are available for advanced rizz generation capabilities.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### How often are new rizz lines added?
+Our Rizz Lines Generator database is updated daily with new templates and patterns to ensure fresh and current pickup lines.

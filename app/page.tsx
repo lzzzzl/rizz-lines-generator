@@ -1,101 +1,92 @@
-import Image from "next/image";
+'use client'
+
+import { AnimatePresence, motion } from 'framer-motion'
+import { Sparkles } from 'lucide-react'
+import { useEffect, useState } from 'react'
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [rizzLines, setRizzLines] = useState<string[]>([])
+  const [currentLineIndex, setCurrentLineIndex] = useState(0)
+  const [isLoading, setIsLoading] = useState(false)
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const generateRizzLines = async () => {
+    setIsLoading(true)
+    const response = await fetch('/api/generate-rizz')
+    const data = await response.json()
+    setRizzLines(data.rizzLines)
+    setCurrentLineIndex(0)
+    setIsLoading(false)
+  }
+
+  useEffect(() => {
+    if (rizzLines.length > 0) {
+      const timer = setTimeout(() => {
+        setCurrentLineIndex((prevIndex) => 
+          prevIndex < rizzLines.length - 1 ? prevIndex + 1 : prevIndex
+        )
+      }, 2000)
+      return () => clearTimeout(timer)
+    }
+  }, [currentLineIndex, rizzLines])
+
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-purple-600 to-blue-600 p-4">
+      <div className="w-full max-w-2xl text-center">
+        <motion.h1
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="mb-8 text-4xl font-bold text-white md:text-6xl"
+        >
+          Rizz Lines Generator
+        </motion.h1>
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={generateRizzLines}
+          disabled={isLoading}
+          className="mb-8 inline-flex items-center rounded-full bg-white px-6 py-3 font-semibold text-purple-600 shadow-lg transition-colors hover:bg-purple-100 disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          {isLoading ? (
+            'Generating...'
+          ) : (
+            <>
+              Generate Rizz Lines <Sparkles className="ml-2 h-5 w-5" />
+            </>
+          )}
+        </motion.button>
+        <div className="h-48"> {/* Fixed height container */}
+          <AnimatePresence mode="wait">
+            {rizzLines[currentLineIndex] && (
+              <motion.div
+                key={currentLineIndex}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5 }}
+                className="rounded-lg bg-white p-6 shadow-xl"
+              >
+                <p className="text-xl font-medium text-purple-600 md:text-2xl">
+                  {rizzLines[currentLineIndex]}
+                </p>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+        {rizzLines.length > 0 && (
+          <div className="mt-4 flex justify-center space-x-2">
+            {rizzLines.map((_, index) => (
+              <div
+                key={index}
+                className={`h-2 w-2 rounded-full ${
+                  index === currentLineIndex ? 'bg-white' : 'bg-white/50'
+                }`}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    </main>
+  )
 }
+
